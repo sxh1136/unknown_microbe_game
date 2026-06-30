@@ -235,7 +235,7 @@ const ORGANISMS = [
     name: "Proteus mirabilis",
     gramImage: "images/pmi.jpg",
     positives: {
-      blood_agar: "Growth on blood agar with no hemolysis. Expanding concentric rings are visible on the plate",
+      blood_agar: "Growth on blood agar with no hemolysis. Swarming behaviour.",
       macconkey_agar: "Growth on MacConkey agar with colorless colonies.",
       catalase: "Catalase positive. Bubbles are produced after hydrogen peroxide is added.",
       citrate: "Citrate positive. The agar turns blue.",
@@ -261,7 +261,7 @@ const ORGANISMS = [
   aliases: ["s marcescens", "s. marcescens"],
   gramImage: "images/sma.jpg",
   positives: {
-    macconkey_agar: "Growth on MacConkey agar with pale colonies.",
+    macconkey_agar: "Growth on MacConkey agar with pale pink colonies.",
     catalase: "Catalase positive. Bubbles are produced after hydrogen peroxide is added.",
     citrate: "Citrate positive. The agar turns blue.",
     motility: "The organism is motile."
