@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Microbiology Unknown ID</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <main class="app">
+  <header class="hero">
+    <p class="hero-kicker">Unknown Microbe Identification Game</p>
+
+    <h1>
+      Identify the <span>unknown microbe</span>
+    </h1>
+
+    <p class="hero-intro">
+      Order lab tests, interpret the results, and work out which organism is hiding in the sample.
+    </p>
+  </header>
+
+
+  <div class="game-layout">
+    <aside class="card test-panel">
+      <h2>Order Lab Tests</h2>
+      <p class="muted">Choose diagnostic tests to reveal clues.</p>
+      <div id="testButtons" class="test-grid"></div>
+    </aside>
+
+    <div class="game-main">
+      <section class="card">
+        <h2>Unknown Isolate</h2>
+        <p>
+          A microbial isolate has been recovered from a blood sample.
+          Use diagnostic tests to identify it.
+        </p>
+
+        <div class="stats">
+          <div>
+            Tests ordered:
+            <strong id="testsOrdered">0</strong>
+          </div>
+
+          <div>
+            Guesses:
+            <strong id="guesses">0</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Results</h2>
+        <div id="results">
+          <p class="muted">No tests ordered yet.</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Make a Guess</h2>
+        <p class="muted">Enter the name of the organism.</p>
+
+        <div class="guess-row">
+          <input
+            id="guessInput"
+            type="text"
+            placeholder="e.g. Escherichia coli"
+            autocomplete="off"
+          />
+          <button id="guessButton">Submit Guess</button>
+        </div>
+
+        <p id="guessFeedback"></p>
+
+        <button id="newGameButton" class="secondary">New Game</button>
+      </section>
+    </div>
+  </div>
+
+  <footer>
+    <p>
+      This game is made for entertainment purposes only. 
+    </p>
+  </footer>
+</main>
+
+
+  <!-- Organism data loads first -->
+  <script src="data/organisms.js"></script>
+
+  <!-- Game logic loads second -->
+  <script src="app.js"></script>
+</body>
+</html>
