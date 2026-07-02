@@ -74,9 +74,12 @@
           <input
             id="guessInput"
             type="text"
-            placeholder="e.g. Escherichia coli"
+            list="organismOptions"
+            placeholder="Begin typing for options"
             autocomplete="off"
           />
+          <datalist id="organismOptions"></datalist>
+
           <button id="guessButton">Submit Guess</button>
         </div>
 

@@ -9,12 +9,14 @@ const testsOrderedEl = document.getElementById("testsOrdered");
 const guessesEl = document.getElementById("guesses");
 const guessInputEl = document.getElementById("guessInput");
 const guessButtonEl = document.getElementById("guessButton");
+const organismOptionsEl = document.getElementById("organismOptions");
 const guessFeedbackEl = document.getElementById("guessFeedback");
 const newGameButtonEl = document.getElementById("newGameButton");
 
 // Reveal answer elements
 const revealAnswerButtonEl = document.getElementById("revealAnswerButton");
 const answerRevealEl = document.getElementById("answerReveal");
+
 
 function startNewGame() {
   currentOrganism = ORGANISMS[Math.floor(Math.random() * ORGANISMS.length)];
@@ -94,6 +96,21 @@ function orderTest(testId) {
   renderResults();
   scrollToLatestResult();
 }
+
+function populateOrganismDropdown() {
+  organismOptionsEl.innerHTML = "";
+
+  const organismNames = ORGANISMS
+    .map((organism) => organism.name)
+    .sort();
+
+  organismNames.forEach((name) => {
+    const option = document.createElement("option");
+    option.value = name;
+    organismOptionsEl.appendChild(option);
+  });
+}
+
 
 function renderResults() {
   resultsEl.innerHTML = "";
@@ -247,5 +264,5 @@ guessInputEl.addEventListener("keydown", (event) => {
 revealAnswerButtonEl.addEventListener("click", revealAnswer);
 
 newGameButtonEl.addEventListener("click", startNewGame);
-
+populateOrganismDropdown();
 startNewGame();
