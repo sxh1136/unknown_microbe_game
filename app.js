@@ -12,9 +12,11 @@ const guessButtonEl = document.getElementById("guessButton");
 const guessFeedbackEl = document.getElementById("guessFeedback");
 const newGameButtonEl = document.getElementById("newGameButton");
 
+// Reveal answer elements
+const revealAnswerButtonEl = document.getElementById("revealAnswerButton");
+const answerRevealEl = document.getElementById("answerReveal");
+
 function startNewGame() {
-  // For now we only have one organism.
-  // Later this can randomly select from ORGANISMS.
   currentOrganism = ORGANISMS[Math.floor(Math.random() * ORGANISMS.length)];
 
   orderedTests = [];
@@ -26,6 +28,11 @@ function startNewGame() {
   guessButtonEl.disabled = false;
   guessFeedbackEl.textContent = "";
   guessFeedbackEl.className = "";
+
+  // Hide and reset reveal answer section
+  revealAnswerButtonEl.style.display = "none";
+  answerRevealEl.innerHTML = "";
+  answerRevealEl.className = "";
 
   renderStats();
   renderTestButtons();
@@ -153,7 +160,6 @@ function renderResults() {
   });
 }
 
-
 function normalizeAnswer(answer) {
   return answer
     .trim()
@@ -190,10 +196,41 @@ function submitGuess() {
 
     guessInputEl.disabled = true;
     guessButtonEl.disabled = true;
+
+    // Hide reveal button if they got it correct
+    revealAnswerButtonEl.style.display = "none";
+    answerRevealEl.innerHTML = "";
+    answerRevealEl.className = "";
+
   } else {
     guessFeedbackEl.textContent = "Incorrect. Try another guess or order more tests.";
     guessFeedbackEl.className = "incorrect";
+
+    // Show reveal answer button after one wrong guess
+    revealAnswerButtonEl.style.display = "inline-block";
   }
+
+  renderStats();
+  renderTestButtons();
+}
+
+function revealAnswer() {
+  if (gameOver) {
+    return;
+  }
+
+  gameOver = true;
+
+  answerRevealEl.innerHTML = `
+    <p>Whole genome sequencing identified the organism as <em><u>${currentOrganism.name}</u></em>.</p>
+  `;
+  answerRevealEl.className = "warning";
+
+  guessInputEl.disabled = true;
+  guessButtonEl.disabled = true;
+
+  // Hide the reveal button after it has been clicked
+  revealAnswerButtonEl.style.display = "none";
 
   renderStats();
   renderTestButtons();
@@ -206,6 +243,8 @@ guessInputEl.addEventListener("keydown", (event) => {
     submitGuess();
   }
 });
+
+revealAnswerButtonEl.addEventListener("click", revealAnswer);
 
 newGameButtonEl.addEventListener("click", startNewGame);
 
